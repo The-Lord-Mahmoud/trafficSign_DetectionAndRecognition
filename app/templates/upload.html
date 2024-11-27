@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload - Traffic Sign Detection</title>
+    <link rel="stylesheet" href="/app/app/static/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Upload Section with Background Image -->
+    <section class="upload-section" style="background-image: url('/app/app/static/files/back3.jpg');">
+        <h2>Upload an Image or Video</h2>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <label for="file">Choose an image or video:</label><br>
+            <input type="file" id="file" name="file" accept="image/*,video/*" required><br><br>
+            <button type="submit">Predict</button>
+        </form>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Traffic Sign Detection Project</p>
+    </footer>
+</body>
+</html>

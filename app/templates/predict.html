@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results - Traffic Sign Detection</title>
+    <link rel="stylesheet" href="/app/app/static/styles.css">
+    <style>
+        /* Add padding to the header to avoid overlap with the fixed navigation bar */
+        header {
+            margin-top: 60px;
+            /* Adjust this margin to avoid overlap */
+            text-align: center;
+        }
+
+        /* Center the content vertically and horizontally */
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            /* Viewport height minus navigation and footer */
+            text-align: center;
+        }
+
+        /* Style the section content to be centered and displayed vertically */
+        #content_res {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Style the media and prediction details */
+        .result-media {
+            margin-bottom: 20px;
+        }
+
+        .prediction-info {
+            margin-bottom: 20px;
+        }
+
+        .prediction-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Traffic Sign Detection and Recognition</h1>
+    </header>
+    <section>
+        <div id="content_res">
+            <h2>Prediction Results</h2>
+            <p>Here is the result of the image or video you uploaded. The detected traffic signs are highlighted.</p>
+
+            <div class="result-media">
+                <!-- Display image or video based on file type -->
+                {% if file_type.startswith('image/') %}
+                <img src="{{ file_path }}" alt="Predicted Traffic Sign" style="max-width:100%; border-radius:10px;">
+                {% elif file_type.startswith('video/') %}
+                <video controls style="max-width:100%; border-radius:10px;">
+                    <source src="{{ file_path }}" type='video/webm'>
+                    Your browser does not support the video tag.
+                </video>
+                {% endif %}
+            </div>
+
+            <div class="prediction-info">
+                <h3>Prediction Details</h3>
+                <!-- Dynamically display the list of predicted traffic signs and confidence -->
+                <ul>
+                    {% if predictions %}
+                    {% for prediction in predictions %}
+                    <li><strong>Sign:</strong> {{ prediction.class_id }} <strong>Confidence:</strong> {{
+                        "%.2f" | format(prediction.confidence) }}%</li>
+                    {% endfor %}
+                    {% else %}
+                    <li>No traffic signs detected</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="button-container">
+                <a href="/upload"><button>Upload Another</button></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Traffic Sign Detection Project</p>
+    </footer>
+</body>
+
+</html>
