@@ -73,7 +73,7 @@ You can pull and run this project locally using Docker or by setting up the envi
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/Lebo2678/traffic-sign-detection-recognition.git
+    git clone https://github.com/The-Lord-Mahmoud/trafficSign_DetectionAndRecognition
     cd traffic-sign-detection-recognition
     ```
 
